@@ -4,7 +4,7 @@
   --primary-color: #0053D6;
   --secondary-color: #00B4F0;
   --accent-color: #e2bb0e;
-  --background-light: #f4f6f8;
+  --background-light: #e0e6ec;
   --background-dark: #1a1a1a;
   --text-dark: #333;
   --text-light: #555;
@@ -45,7 +45,7 @@
   .section-wrapper,
   .seccion-cursos,
   .tarjeta {
-    background: #eee9e9;
+    background: #141414;
   }
 }
 
@@ -74,8 +74,8 @@ body {
 /* === Section Title === */
 .section-title {
   background: linear-gradient(
-    135deg,
-    rgba(216, 217, 219, 0.932),
+    200deg,
+    rgba(6, 81, 233, 0.932),
     rgb(218, 224, 226)
   );
   backdrop-filter: blur(6px);
@@ -120,7 +120,7 @@ body {
   left: 80%;
   width: 8px;
   height: 8px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 20%, transparent 80%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 20%, transparent 150%);
   border-radius: 50%;
   animation: sparkle 3s infinite ease-in-out;
   z-index: 1;
@@ -144,9 +144,10 @@ body {
   justify-content: center;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
-  text-shadow: 1px 1px 3px rgba(245, 238, 238, 0.938);
+  text-shadow: 0.5px 0.5px 1px rgba(233, 225, 225, 0.979); /* Ajustado para menos borrosidad */
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 .section-title:hover h1 {
   transform: scale(1.02);
