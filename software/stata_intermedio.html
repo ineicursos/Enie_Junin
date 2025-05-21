@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title> Stata Intermedio| INEI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="../imagenes/cta.webp"sizes="4000x4000">
+
+   
+    
+    <style>
+        :root {
+            --primary-color: #0053D6;
+            --secondary-color: #00B4F0;
+            --accent-color: #e2bb0e;
+            --background-light: #f4f6f8;
+            --text-dark: #333;
+            --text-light: #555;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, #0053D6, #00B4F0);
+        }
+  
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+  
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+  
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+  /*section - titel*/
+.section-title {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 83, 214, 0.15), /* --primary-color with opacity */
+        rgba(0, 180, 240, 0.15) /* --secondary-color with opacity */
+    );
+    backdrop-filter: blur(12px); /* Glassmorphism effect */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    box-shadow: var(--shadow);
+    padding: 50px 40px;
+    margin: 40px auto;
+    max-width: 1100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Hover Effect */
+.section-title:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Inner Container */
+.title-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Title Styling */
+.section-title h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Styling */
+.section-title .title-icon i {
+    font-size: 1.4em;
+    color: var(--accent-color);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Subtitle Styling */
+.section-title .subtitle {
+    font-size: 1.2em;
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* Gradient Accent Line */
+.section-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient);
+    z-index: 1;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section-title {
+        padding: 30px 20px;
+        margin: 20px 10px;
+    }
+
+    .section-title h1 {
+        font-size: 2em;
+    }
+
+    .section-title .subtitle {
+        font-size: 1em;
+    }
+
+    .section-title .title-icon i {
+        font-size: 1.2em;
+    }
+}
+        /* Section Wrapper */
+        .section-wrapper {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+  
+        .section-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+  
+        h2 {
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-bottom: 4px solid var(--secondary-color);
+            padding-bottom: 15px;
+            position: relative;
+        }
+  
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--accent-color);
+        }
+  
+        p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 1.1em;
+        }
+  
+        ul, ol {
+            padding-left: 30px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+  
+        li {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+  
+        li strong {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+  
+        /* Form */
+        form {
+            display: grid;
+            grid-gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+  
+        form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 1.1em;
+        }
+  
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="tel"],
+        form textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 1em;
+            border-radius: 10px;
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+  
+        form input[type="text"]:focus,
+        form input[type="email"]:focus,
+        form input[type="tel"]:focus,
+        form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 83, 214, 0.2);
+            outline: none;
+        }
+  
+        form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+  
+        form button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+  
+        form button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #003d80, #009ccc);
+        }
+  
+        /* Carousel Section */
+        .seccion-cursos {
+            max-width: 1200px;
+            margin: 60px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+  
+        .titulo-principal {
+            text-align: center;
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+  
+        .carrusel {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+  
+        .carrusel::-webkit-scrollbar {
+            display: none;
+        }
+  
+        .tarjeta {
+            flex: 0 0 320px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            scroll-snap-align: center;
+            transition: transform 0.3s ease;
+        }
+  
+        .tarjeta:hover {
+            transform: translateY(-10px);
+        }
+  
+        .tarjeta img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+  
+        .tarjeta:hover img {
+            opacity: 0.9;
+        }
+  
+        .etiqueta {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.8em;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+  
+        .contenido {
+            padding: 20px;
+            text-align: center;
+        }
+  
+        .titulo-curso {
+            font-weight: 600;
+            font-size: 1.2em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+  
+        .tarjeta:hover .titulo-curso {
+            color: var(--secondary-color);
+        }
+  
+        .info {
+            font-size: 0.95em;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+  
+        .info i {
+            color: var(--secondary-color);
+        }
+  
+        .boton-ver-programa {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+  
+        .boton-ver-programa:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 180, 240, 0.3);
+        }
+  
+        .flecha {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+  
+        .flecha:hover {
+            background: var(--primary-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+  
+        .flecha.izquierda {
+            left: 10px;
+        }
+  
+        .flecha.derecha {
+            right: 10px;
+        }
+  
+        /* Certificate Section */
+        .certificate-image img {
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+  
+        .certificate-image:hover img {
+            transform: scale(1.05);
+        }
+  
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 0;
+            background-image: linear-gradient(135deg, #222, #1a1a1a);
+        }
+  
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+  
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+  
+        .footer-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+  
+        .footer-section p, .footer-section address {
+            font-size: 1em;
+            color: #ccc;
+        }
+  
+        .footer-section a {
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+  
+        .footer-section a:hover {
+            text-decoration: underline;
+            color: #00e0ff;
+        }
+  
+        .social-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+  
+        .social-links a {
+            font-size: 1.5em;
+            color: white;
+            transition: color 0.3s ease;
+        }
+  
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+  
+        .inei-logo {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            border-radius: 5px;
+        }
+  
+        .inei-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 180, 240, 0.5);
+        }
+  
+        .call-to-action {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+            margin-top: 20px;
+            width: 100%;
+        }
+  
+        .call-to-action h4 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+  
+        .call-to-action p {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+  
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+  
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #003d80, #009ccc);
+        }
+  
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            background: #1a1a1a;
+            font-size: 0.9em;
+            color: #bbb;
+            width: 100%;
+        }
+  
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+  
+            header {
+                padding: 60px 0;
+            }
+  
+            header h1 {
+                font-size: 2em;
+            }
+  
+            header p {
+                font-size: 1em;
+            }
+  
+            .section-wrapper {
+                padding: 20px;
+            }
+  
+            h2 {
+                font-size: 1.8em;
+            }
+  
+            form {
+                grid-template-columns: 1fr;
+            }
+  
+            .seccion-cursos {
+                padding: 20px;
+                margin: 40px 10px;
+            }
+  
+            .tarjeta {
+                flex: 0 0 280px;
+            }
+  
+            .tarjeta img {
+                height: 160px;
+            }
+  
+            .flecha {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5em;
+            }
+  
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+  
+            .social-links {
+                justify-content: center;
+            }
+  
+            .inei-logo {
+                height: 50px;
+                margin-top: 10px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="loader">
+        <div class="particles"></div>
+        <img src="../imagenes/logo_inei.png" alt="Logo del INEI" class="loader-logo">
+        <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+        </div>
+        <script>
+            window.addEventListener('load', () => {
+        const loader = document.querySelector('.loader');
+        setTimeout(() => {
+            loader.classList.add('hidden');
+        }, 3000); // Adjust timing as needed
+    });
+        </script>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <section class="section-title">
+            <div class="title-container">
+                <h1>
+                    <span class="title-icon"><i class="fas fa-video"></i></span>
+                    STATA Intermedio
+                </h1>
+            </div>
+        </section> 
+        <section class="section-wrapper">
+            <h2>Descripcion</h2>
+           <p>🚀 El curso comprende el análisis estadístico, análisis de regresión lineal, regresión logística, inferencias 
+            sobre prevalencias e incidencias, definición de un conjunto de indicadores sociales, método de la 
+            línea de pobreza y conceptos y medición de los niveles de empleo. La temática de este curso, implica 
+            el desarrollo de casos prácticos, utilizando las bases de datos de las principales investigaciones 
+            estadísticas que ejecuta el INEI: Encuesta Nacional de Hogares (ENAHO), entre otras.</p>
+        </section>
+
+
+        <section class="section-wrapper">
+          <h2>Objetivo General</h2>
+         <p>🎯  Desarrollar las herramientas necesarias que tiene el software STATA para analizar datos a través 
+            de los modelos de regresión y calcular los principales indicadores sociales de pobreza y empleo, 
+            utilizando las bases de datos de las diversas investigaciones estadísticas que ejecuta el INEI..</p>
+      </section>
+
+        <section class="section-wrapper">
+            <h2>Detalles del Curso</h2>
+            <ul>
+                <li><i class="fas fa-laptop" style="margin-right: 8px;"></i> <strong>Modalidad:</strong> Virtual en vivo</li>
+                <li><i class="far fa-clock" style="margin-right: 8px;"></i> <strong>Duración:</strong> 30 horas académicas de aprendizaje intensivo</li>
+                <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Inversión:</strong> S/ 300 (¡Una inversión en tu futuro creativo!)</li>
+            </ul>
+        </section>
+
+        <section class="section-wrapper">
+            <h2>Contenido Tematico</h2>
+                <li><strong>Módulo 1:</strong> Revisión de bases de datos a trabajar: Encuesta Nacional de Hogares – ENAHO; entre otras.</li>
+                <li><strong>Módulo 2:</strong> Análisis estadístico y Análisis de Regresión Lineal</li>
+                <li><strong>Módulo 3:</strong> Regresión Logística</li>
+                <li><strong>Módulo 4:</strong> Inferencias sobre prevalencias e incidencias</li>
+                <li><strong>Módulo 5:</strong> Metodología de los principales indicadores sociales de la pobreza</li>
+                <li><strong>Módulo 6:</strong> Uso de programas ado de los usuarios de STATA, para el cálculo de indicadores de pobreza</li>
+                <li><strong>Módulo 7:</strong> Cálculo de la pobreza a través de las Necesidades Básicas Insatisfechas</li>
+                <li><strong>Módulo 8:</strong> Cálculo de la pobreza monetaria e integrada</li>
+                <li><strong>Módulo 9:</strong> Cálculo e interpretación de los índices Foster–Greer–Thorbecke</li>
+                <li><strong>Módulo 10:</strong> Conceptos y medición de los niveles de empleo</li>
+                <li><strong>Módulo 11:</strong> Nociones básicas de programación para el análisis de datos: PRESERVE, RESTORE</li>
+                <li><strong>Módulo 12:</strong> Uso de bucles: FOREACH, FORVALUES</li>
+            </ol>
+        </section>
+
+        <section class="section-wrapper">
+          <h2>Certificación</h2>
+          <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 300px;">
+                  <p><i class="fas fa-certificate" style="margin-right: 8px;"></i> Al completar exitosamente el curso, recibirás un <strong>certificado digital</strong> de prestigio emitido por <strong>INEI</strong>, un reconocimiento oficial de tus nuevas habilidades en STATA Intermedio.</p>
+              </div>
+              <div class="certificate-image" style="flex: 0 0 500px;">
+                  <img src="../imagenes/certificado.webp" alt="Ejemplo de certificado digital INEI" style="width: 100%; height: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #ddd; border-radius: 4px;"/>
+                  <p style="font-size: 0.8em; color: #666; margin-top: 5px; text-align: center;">Certificado del curso</p>
+              </div>
+          </div>
+      </section>
+
+        <section class="section-wrapper">
+            <h2>Pre Requisitos</h2>
+            <p><i class="fas fa-check-circle" style="margin-right: 8px;"></i> Tener conocimiento y manejo de análisis estadístico y STATA Básico.</p>
+        </section>
+
+
+        <section class="section-wrapper">
+          <h2>Resultados Esperados</h2>
+          <p><i class="fas fa-check-circle" style="margin-right: 8px;"></i> 🎉  Al concluir el curso, el participante estará capacitado para manejar y aplicar el paquete estadístico 
+            STATA a nivel intermedio que le permitirá analizar e interpretar indicadores provenientes de las 
+            diversas estadísticas como la ENAHO.</p>
+      </section>
+
+
+        <section class="section-wrapper">
+            <h2>¡Solicita Información Ahora!</h2>
+            <form id="formularioContacto" action="#" method="POST">
+                <label for="nombre"><i class="fas fa-user" style="margin-right: 8px;"></i> Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
+
+                <label for="correo"><i class="fas fa-envelope" style="margin-right: 8px;"></i> Correo electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="Tu dirección de correo electrónico" required>
+
+                <label for="telefono"><i class="fas fa-phone" style="margin-right: 8px;"></i> Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Tu número de teléfono" required>
+                <input type="hidden" id="cursoSeleccionado" name="cursoSeleccionado" value="STATA Intermedio">
+
+                <button type="submit"><i class="fas fa-paper-plane" style="margin-right: 10px;"></i> Enviar Solicitud de Información</button>
+            </form>
+        </section>
+    </div>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+  
+      .seccion-cursos {
+        max-width: 1200px;
+        margin: 60px auto;
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        position: relative;
+      }
+  
+      .titulo-principal {
+        text-align: center;
+        font-size: 1.8rem;
+        color: #0053D6;
+        margin-bottom: 40px;
+      }
+  
+      .carrusel {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 20px;
+        scroll-behavior: smooth;
+      }
+  
+      .tarjeta {
+        flex: 0 0 300px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        scroll-snap-align: center;
+      }
+  
+      .tarjeta img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+  
+      .etiqueta {
+        position: absolute;
+        background-color: #2E32D1;
+        color: #fff;
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 8px;
+        margin: 10px;
+      }
+  
+      .contenido {
+        padding: 20px;
+      }
+  
+      .titulo-curso {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #0053D6;
+        margin-bottom: 10px;
+      }
+  
+      .info {
+        font-size: 0.9rem;
+        color: #333;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+  
+      .boton {
+        display: flex;
+        justify-content: center;
+        background-color: #00B4F0;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.3s;
+        margin: 10px auto 0;
+        width: fit-content;
+      }
+  
+      .boton:hover {
+        background-color: #009ccc;
+      }
+  
+      .flecha {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background-color: #00B4F0;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+      }
+  
+      .flecha.izquierda {
+        left: -25px;
+      }
+  
+      .flecha.derecha {
+        right: -25px;
+      }
+    </style>
+</head>
+<body>
+<section class="seccion-cursos">
+  <h2 class="titulo-principal">Nuevos programas que llevarán tu carrera al siguiente nivel __</h2>
+
+  <button class="flecha izquierda" onclick="moverCarrusel(-1)">&#8592;</button>
+  <div class="carrusel" id="carruselCursos">
+
+    <!-- Curso 1 -->
+    <div class="tarjeta">
+      <div style="position: relative;">
+        <span class="etiqueta">Programas Modulares</span>
+        <img src="../imagenes/officeintermedio.webp" alt="Herramientas Ofimaticas Intermedias">
+      </div>
+      <div class="contenido">
+        <h3 class="titulo-curso">Herramientas Ofimaticas Intermedias</h3>
+        <div class="info">🕒 30 horas</div>
+        <div class="info">💻 Online</div>
+        <div class="info">👥 25</div>
+        <div class="contenedor-boton">
+          <a href="../office/herramientas_ofimaticas_intermedias.html" class="boton-ver-programa">Ver Programa</a>
+      </div>
+      </div>
+    </div>
+
+    <!-- Curso 2 -->
+    <div class="tarjeta">
+      <div style="position: relative;">
+        <span class="etiqueta">Programas Modulares</span>
+        <img src="../imagenes/avanzado.webp" alt="Herramientas Ofiaticas 
+        Avanzadas">
+      </div>
+      <div class="contenido">
+        <h3 class="titulo-curso">Herramientas Ofimaticas 
+          Avanzadas</h3>
+        <div class="info">🕒 30 Horas Académicas</div>
+        <div class="info">💻 Online</div>
+        <div class="info">👥 25</div>
+        <div class="contenedor-boton">
+          <a href="../office/herramientas_ofimaticas_avanzadas.html" class="boton-ver-programa">Ver Programa</a>
+      </div>
+      </div>
+    </div>
+
+    <!-- Curso 3 -->
+    <div class="tarjeta">
+      <div style="position: relative;">
+        <span class="etiqueta">Programas Modulares</span>
+        <img src="../imagenes/Herramientas Ofimáticas para la Gestión Administrativa.webp" alt="Herramientas Ofimáticas para la Gestión Administrativa">
+      </div>
+      <div class="contenido">
+        <h3 class="titulo-curso">Herramientas Ofimáticas para la Gestión Administrativa</h3>
+        <div class="info">🕒 30 Horas Académicas</div>
+        <div class="info">💻 Online</div>
+        <div class="info">👥 25</div>
+        <div class="contenedor-boton">
+          <a href="../office/herramientas_ofimaticas_para_la_gestion_administrativa.html" class="boton-ver-programa">Ver Programa</a>
+      </div>
+      </div>
+    </div>
+
+    <!-- Curso 4 -->
+    <div class="tarjeta">
+      <div style="position: relative;">
+        <span class="etiqueta">Programas Modulares</span>
+        <img src="../imagenes/graficos.webp" alt="Funciones y Graficos con Excel Basico">
+      </div>
+      <div class="contenido">
+        <h3 class="titulo-curso">Funciones y Graficos con Excel Basico</h3>
+        <div class="info">🕒 30 Horas Académicas</div>
+        <div class="info">💻 Online</div>
+        <div class="info">👥 25</div>
+        <div class="contenedor-boton">
+          <a href="../excel/funciones_graficos_excel.html" class="boton-ver-programa">Ver Programa</a>
+      </div>
+      </div>
+    </div>
+
+    <!-- Curso 5 -->
+    <div class="tarjeta">
+      <div style="position: relative;">
+        <span class="etiqueta">Programas Modulares</span>
+        <img src="../imagenes/baseexcel.webp" alt="Base de Datos 
+        con Excel">
+      </div>
+      <div class="contenido">
+        <h3 class="titulo-curso">Base de Datos 
+          con Excel</h3>
+        <div class="info">🕒 30 Horas Académicas</div>
+        <div class="info">💻 Online</div>
+        <div class="info">👥 25</div>
+        <div class="contenedor-boton">
+          <a href="../excel/base_datos_excel.html" class="boton-ver-programa">Ver Programa</a>
+      </div>
+      </div>
+    </div>
+    <!-- Curso 6 -->
+    <div class="tarjeta">
+      <div style="position: relative;">
+        <span class="etiqueta">Programas Modulares</span>
+        <img src="../imagenes/excel.webp" alt="Procesamiento de Datos y Programación con Excel Avanzado">
+      </div>
+      <div class="contenido">
+        <h3 class="titulo-curso">Procesamiento de Datos y Programación con Excel Avanzado</h3>
+        <div class="info">🕒 30 Horas Académicas</div>
+        <div class="info">💻 Online</div>
+        <div class="info">👥 25</div>
+        <div class="contenedor-boton">
+          <a href="../excel/procesamientos_datos_excel.html" class="boton-ver-programa">Ver Programa</a>
+      </div>
+      </div>
+    </div>
+    <!-- Curso 7 -->
+    <div class="tarjeta">
+      <div style="position: relative;">
+        <span class="etiqueta">Programas Modulares</span>
+        <img src="../imagenes/tablas.webp" alt="Procesamiento de Datos y Tablas Dinámicas en Excel">
+      </div>
+      <div class="contenido">
+        <h3 class="titulo-curso">Procesamiento de Datos y Tablas Dinámicas en Excel</h3>
+        <div class="info">🕒 30 Horas Académicas</div>
+        <div class="info">💻 Online</div>
+        <div class="info">👥 25</div>
+        <div class="contenedor-boton">
+          <a href="../excel/procesamiento_datos_tablas_excel.html" class="boton-ver-programa">Ver Programa</a>
+      </div>
+      </div>
+    </div>
+    <div class="tarjeta">
+      <div style="position: relative;">
+        <span class="etiqueta">Programas Modulares</span>
+        <img src="../imagenes/SPSS INTERMEDIO.png" alt="">
+      </div>
+      <div class="contenido">
+        <h3 class="titulo-curso">SPSS Intermedio</h3>
+        <div class="info">🕒 30 Horas Académicas</div>
+        <div class="info">💻 Online</div>
+        <div class="info">👥 25</div>
+        <div class="contenedor-boton">
+          <a href="../software/spss_intermedio.html" class="boton-ver-programa">Ver Programa</a>
+      </div>
+      </div>
+    </div>
+  </div>
+  <button class="flecha derecha" onclick="moverCarrusel(1)">&#8594;</button>
+</section>
+
+<script>
+  function moverCarrusel(direccion) {
+    const carrusel = document.getElementById('carruselCursos');
+    const ancho = carrusel.querySelector('.tarjeta').offsetWidth + 20; // 20 es el gap
+    carrusel.scrollBy({ left: direccion * ancho, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
+
+<footer>
+<div class="footer-container">
+    <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>Escuela Nacional de Estadística e Informática</p>
+        <address>
+            Calle Real 615, Huancayo<br>
+            Teléfono: <a href="tel:948751795">948751795</a><br>
+            Correo: <a href="mailto:enei.junin615@gmail.com">enei.junin615@gmail.com</a>
+        </address>
+    </div>
+    <div class="footer-section">
+        <h3>Síguenos y Contáctanos</h3>
+        <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61560786057025" target="_blank" class="facebook-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/948751795" target="_blank" class="whatsapp-icon" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://m.inei.gob.pe/enei/cursos_programados/" target="_blank" class="inei-link" aria-label="Visitar sitio web de INEI">
+              <img src="../imagenes/logo_inei.png" alt="Logo INEI" style="height: 40px;">
+          </a>
+        </div>
+    </div>
+</div>
+<div class="call-to-action">
+    <h4>¡Transforma tu Futuro Hoy!</h4>
+    <p>Matrícula en nuestros programas y da el primer paso hacia el éxito profesional.</p>
+    <a href="#formularioContacto" class="cta-button">¡Explora Nuestros Cursos!</a>
+</div>
+<div class="copyright">
+    <p><a href="../index.html"><i class="fas fa-arrow-left" style="margin-right: 5px;"></i> Volver al catálogo de cursos</a> | © 2025 INEI - Formando Profesionales Líderes</p>
+</div>
+</footer>
+
+<script>
+function moverCarrusel(direccion) {
+    const carrusel = document.getElementById('carruselCursos');
+    const ancho = carrusel.querySelector('.tarjeta').offsetWidth + 20;
+    carrusel.scrollBy({ left: direccion * ancho, behavior: 'smooth' });
+}
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyC1UR2jyA1qpLUxsIJAV-U1Lwzrfu1tePs",
+    authDomain: "paginaweb-bd0ad.firebaseapp.com",
+    databaseURL: "https://paginaweb-bd0ad-default-rtdb.firebaseio.com",
+    projectId: "paginaweb-bd0ad",
+    storageBucket: "paginaweb-bd0ad.appspot.com",
+    messagingSenderId: "20500351515",
+    appId: "1:20500351515:web:eabb0446f149ac75ab86be",
+    measurementId: "G-W268KYPFQE"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+    console.log("Firebase inicializado correctamente para Herramientas Ofimaticas Basicas");
+}
+
+const database = firebase.database();
+
+document.getElementById('formularioContacto').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const correo = document.getElementById('correo').value;
+    const telefono = document.getElementById('telefono').value;
+    const cursoSeleccionado = document.getElementById('cursoSeleccionado').value;
+
+    const formData = {
+        nombre,
+        correo,
+        telefono,
+        curso: cursoSeleccionado,
+        fechaEnvio: new Date().toString(),
+        estado: 'pendiente'
+    };
+
+    const newFormRef = database.ref('solicitudes_curso_ofimatica_basica').push();
+
+    newFormRef.set(formData)
+        .then(() => {
+            alert('¡Tu solicitud para el curso de Herramientas Ofimaticas Basicas ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
+            document.getElementById('formularioContacto').reset();
+        })
+        .catch(error => {
+            console.error('Error al enviar el formulario:', error);
+            alert('Hubo un error al enviar tu solicitud. Por favor, intenta nuevamente.');
+        });
+});
+</script>
+<script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
+</body>
+</html>
