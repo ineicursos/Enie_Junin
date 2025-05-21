@@ -56,14 +56,16 @@
           <ul>
               <li><i class="fas fa-laptop" style="margin-right: 8px;"></i> <strong>Modalidad:</strong> Virtual en vivo</li>
               <li><i class="far fa-clock" style="margin-right: 8px;"></i> <strong>Duración:</strong> 30 horas académicas de aprendizaje intensivo</li>
-              <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Inversión:</strong> S/ 300 (¡Una inversión en tu futuro creativo!)</li>
+              <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Inversión:</strong> S/ 350.00 (¡Una inversión en tu futuro creativo!)</li>
+              <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Media Beca:</strong> S/175.00 ( Aplica a Estudiantes, Docentes, Trabajadores Públicos, PNP y FFAA)</li>
+
           </ul>
       </section>
 
         <section class="section-wrapper">
             <h2>Programa del Curso</h2>
             <ol>
-                <P>✅ POWER BI</P>
+                <p>✅ POWER BI: Fundamentos y Visualización</p>
                 <li><strong>Módulo 1:</strong> Entorno Power BI - Arquitectura Power BI.</li>
                 <li><strong>Módulo 2:</strong> Tipo de Cuentas Power BI.</li>
                 <li><strong>Módulo 3:</strong> Creación Informes Power BI - Conexión archivos locales (Excel, csv, Access y otros).</li>
@@ -73,11 +75,11 @@
                 <li><strong>Módulo 7:</strong> Conexión Base Datos desde Power BI.</li>
                 <li><strong>Módulo 8:</strong> Configuración y agregar columnas.</li>
                 <li><strong>Módulo 9:</strong> Agregación de Temas.</li>
-                <P>✅ POWER QUERY</P>
+                <p>✅ POWER QUERY: Transformación y Limpieza de Datos</p>
                 <li><strong>Módulo 10:</strong> Power Query - Limpieza de datos.</li>
                 <li><strong>Módulo 11:</strong> Visualizaciones con mapas.</li>
                 <li><strong>Módulo 12:</strong> Formato Condicional con Power BI.</li>
-                <P>✅ INTRODUCCION A DAX</P>
+                <p>✅ INTRODUCCIÓN A DAX: Cálculo y Lógica</p>
                 <li><strong>Módulo 13:</strong> Introducción de Funciones DAX - Funciones DAX.</li>
                 <li><strong>Módulo 14:</strong> Funciones Lógicas.</li>
                 <li><strong>Módulo 15:</strong> Medidas.</li>
@@ -106,7 +108,6 @@
 
         <section class="section-wrapper">
             <h2>¡Solicita Información Ahora!</h2>
-            <p>¿Listo para transformar tu pasión por el video en una habilidad profesional? Completa el siguiente formulario y nuestro equipo se pondrá en contacto contigo a la brevedad para brindarte todos los detalles que necesitas.</p>
             <form id="formularioContacto" action="#" method="POST">
                 <label for="nombre"><i class="fas fa-user" style="margin-right: 8px;"></i> Nombre completo</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
@@ -341,7 +342,7 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    console.log("Firebase inicializado correctamente para Herramientas Ofimaticas Basicas");
+    console.log("Firebase inicializado correctamente para Analisis y Explotacion de Base de datos con Power Bi");
 }
 
 const database = firebase.database();
@@ -363,11 +364,11 @@ document.getElementById('formularioContacto').addEventListener('submit', functio
         estado: 'pendiente'
     };
 
-    const newFormRef = database.ref('solicitudes_curso_ofimatica_basica').push();
+    const newFormRef = database.ref('solicitudes_curso_power_bi').push();
 
     newFormRef.set(formData)
         .then(() => {
-            alert('¡Tu solicitud para el curso de Herramientas Ofimaticas Basicas ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
+            alert('¡Tu solicitud para el curso de Analisis y Explotacion de Base de datos con Power Bi ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
             document.getElementById('formularioContacto').reset();
         })
         .catch(error => {
@@ -376,6 +377,5 @@ document.getElementById('formularioContacto').addEventListener('submit', functio
         });
 });
 </script>
-<script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
 </body>
 </html>

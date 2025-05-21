@@ -58,10 +58,10 @@
             <ul>
                 <li><i class="fas fa-laptop" style="margin-right: 8px;"></i> <strong>Modalidad:</strong> Virtual en vivo</li>
                 <li><i class="far fa-clock" style="margin-right: 8px;"></i> <strong>Duración:</strong> 30 horas académicas de aprendizaje intensivo</li>
-                <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Inversión:</strong> S/ 300 (¡Una inversión en tu futuro creativo!)</li>
+                <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Inversión:</strong> S/ 300.00 (¡Una inversión en tu futuro creativo!)</li>
+                <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Media Beca:</strong> S/150.00 ( Aplica a Estudiantes, Docentes, Trabajadores Públicos, PNP y FFAA)</li>
             </ul>
         </section>
-
         <section class="section-wrapper">
             <h2>Contenido Tematico</h2>
                 <p>✅ Excel Avanzado: Tablas dinámicas: segmentación y líneas de tiempo</p>
@@ -104,7 +104,6 @@
 
         <section class="section-wrapper">
             <h2>¡Solicita Información Ahora!</h2>
-            <p>¿Listo para transformar tu pasión por el video en una habilidad profesional? Completa el siguiente formulario y nuestro equipo se pondrá en contacto contigo a la brevedad para brindarte todos los detalles que necesitas.</p>
             <form id="formularioContacto" action="#" method="POST">
                 <label for="nombre"><i class="fas fa-user" style="margin-right: 8px;"></i> Nombre completo</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
@@ -340,7 +339,7 @@
 
   if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
-      console.log("Firebase inicializado correctamente para Especialización en Excel");
+      console.log("Firebase inicializado correctamente para Herramientas Ofimaticas Avanzadas");
   }
 
   const database = firebase.database();
@@ -362,11 +361,11 @@
           estado: 'pendiente'
       };
 
-      const newFormRef = database.ref('solicitudes_curso_especializacion_excel').push();
+      const newFormRef = database.ref('solicitudes_curso_ofimatica_avanzada').push();
 
       newFormRef.set(formData)
           .then(() => {
-              alert('¡Tu solicitud para el curso de Especialización en Excel ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
+              alert('¡Tu solicitud para el curso de Herramientas Ofimaticas Avanzadas ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
               document.getElementById('formularioContacto').reset();
           })
           .catch(error => {
@@ -374,9 +373,6 @@
               alert('Hubo un error al enviar tu solicitud. Por favor, intenta nuevamente.');
           });
   });
-
-
-  
 </script>
 </body>
 </html>

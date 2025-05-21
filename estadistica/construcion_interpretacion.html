@@ -59,24 +59,28 @@
             <ul>
                 <li><i class="fas fa-laptop" style="margin-right: 8px;"></i> <strong>Modalidad:</strong> Virtual / Precencial</li>
                 <li><i class="far fa-clock" style="margin-right: 8px;"></i> <strong>Duración:</strong> 30 horas académicas de aprendizaje intensivo</li>
-                <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Inversión:</strong> S/ 240.00 (¡Una inversión en tu futuro creativo!)</li>
-                 <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Media Beca:</strong> S/120 ( Aplica a Estudiantes, Docentes, Trabajadores Públicos, PNP y FFAA)</li>
+                <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Inversión:</strong> S/ 350.00 (¡Una inversión en tu futuro creativo!)</li>
+                 <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Media Beca:</strong> S/175.00 ( Aplica a Estudiantes, Docentes, Trabajadores Públicos, PNP y FFAA)</li>
             </ul>
         </section>
 
         <section class="section-wrapper">
           <h2>Contenido Tematico</h2>
+              <p>✅ Excel para Análisis Estadístico</p>
               <li><strong>Módulo 1:</strong> Definición de indicadores, tipos y características.</li>
               <li><strong>Módulo 2:</strong> Fuentes de información para la construcción de indicadores.</li>
               <li><strong>Módulo 3:</strong> Indicadores estadísticos de tendencia central y de dispersión.</li>
               <li><strong>Módulo 4:</strong> Razones, proporciones y tasas. Números índicess.</li>
+              <p>✅ Indicadores Económicos</p>
               <li><strong>Módulo 5:</strong> Metodología de cálculo del IPC. Usos.</li>
               <li><strong>Módulo 6:</strong> Producto Bruto Interno. Oferta y Demanda Global.</li>
               <li><strong>Módulo 7:</strong> Metodología de cálculo del Índice Mensual de la Producción Nacional.</li>
+              <p>✅ Indicadores Sociales y Demográficos</p>
               <li><strong>Módulo 8:</strong> Proyecciones de población.</li>
               <li><strong>Módulo 9:</strong> Cálculo de indicadores laborales: empleo, desempleo.</li>
               <li><strong>Módulo 10:</strong> Cálculo de indicadores sociales: educación, salud, pobreza.</li>
               <li><strong>Módulo 11:</strong> Cálculo del Índice de Desarrollo Humano.</li>
+              <p>✅ Comunicación y Reportes</p>
               <li><strong>Módulo 12:</strong> Importancia de la comunicación y difusión: página web y redes sociales.</li>
               <li><strong>Módulo 13:</strong> Notas de prensa, comunicados internos e informes técnicos.</li>
               <li><strong>Módulo 14:</strong> Normas para la elaboración de cuadros y gráficos.</li>
@@ -111,7 +115,6 @@
 
         <section class="section-wrapper">
             <h2>¡Solicita Información Ahora!</h2>
-            <p>¿Listo para transformar tu pasión por el video en una habilidad profesional? Completa el siguiente formulario y nuestro equipo se pondrá en contacto contigo a la brevedad para brindarte todos los detalles que necesitas.</p>
             <form id="formularioContacto" action="#" method="POST">
                 <label for="nombre"><i class="fas fa-user" style="margin-right: 8px;"></i> Nombre completo</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
@@ -346,7 +349,7 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    console.log("Firebase inicializado correctamente para Herramientas Ofimaticas Basicas");
+    console.log("Firebase inicializado correctamente para Construcción e Interpretación de Indicadores Económicos y Sociales");
 }
 
 const database = firebase.database();
@@ -368,11 +371,11 @@ document.getElementById('formularioContacto').addEventListener('submit', functio
         estado: 'pendiente'
     };
 
-    const newFormRef = database.ref('solicitudes_curso_ofimatica_basica').push();
+    const newFormRef = database.ref('solicitudes_curso_interpretacion_indicadores').push();
 
     newFormRef.set(formData)
         .then(() => {
-            alert('¡Tu solicitud para el curso de Herramientas Ofimaticas Basicas ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
+            alert('¡Tu solicitud para el curso de Construcción e Interpretación de Indicadores Económicos y Sociales ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
             document.getElementById('formularioContacto').reset();
         })
         .catch(error => {

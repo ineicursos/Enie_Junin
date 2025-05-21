@@ -64,7 +64,7 @@
                 <li><i class="fas fa-laptop" style="margin-right: 8px;"></i> <strong>Modalidad:</strong> Virtual / Precencial</li>
                 <li><i class="far fa-clock" style="margin-right: 8px;"></i> <strong>Duración:</strong> 150 horas académicas de aprendizaje intensivo</li>
                 <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Inversión:</strong> S/ 600.00 (¡Una inversión en tu futuro creativo!)</li>
-                 <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Media Beca:</strong> S/300 ( Aplica a Estudiantes, Docentes, Trabajadores Públicos, PNP y FFAA)</li>
+                 <li><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> <strong>Media Beca:</strong> S/400.00 ( Aplica a Estudiantes, Docentes, Trabajadores Públicos, PNP y FFAA)</li>
             </ul>
         </section>
 
@@ -120,8 +120,7 @@
 
         <section class="section-wrapper">
             <h2>¡Solicita Información Ahora!</h2>
-            <p>¿Listo para transformar tu pasión por el video en una habilidad profesional? Completa el siguiente formulario y nuestro equipo se pondrá en contacto contigo a la brevedad para brindarte todos los detalles que necesitas.</p>
-            <form id="formularioContacto" action="#" method="POST">
+                <form id="formularioContacto" action="#" method="POST">
                 <label for="nombre"><i class="fas fa-user" style="margin-right: 8px;"></i> Nombre completo</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
 
@@ -355,7 +354,7 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    console.log("Firebase inicializado correctamente para Herramientas Ofimaticas Basicas");
+    console.log("Firebase inicializado correctamente Especializacion en Muestreo");
 }
 
 const database = firebase.database();
@@ -377,11 +376,11 @@ document.getElementById('formularioContacto').addEventListener('submit', functio
         estado: 'pendiente'
     };
 
-    const newFormRef = database.ref('solicitudes_curso_ofimatica_basica').push();
+    const newFormRef = database.ref('solicitudes_curso_especializacion_muestreo').push();
 
     newFormRef.set(formData)
         .then(() => {
-            alert('¡Tu solicitud para el curso de Herramientas Ofimaticas Basicas ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
+            alert('¡Tu solicitud para el curso de Especializacion En Muestreo ha sido enviada correctamente! Nos pondremos en contacto contigo pronto.');
             document.getElementById('formularioContacto').reset();
         })
         .catch(error => {

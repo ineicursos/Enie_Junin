@@ -345,7 +345,7 @@ nav a:hover::after, nav a:focus::after {
     position: relative;
     background: url('imagenes/fondo.webp') no-repeat center center/cover;
     background-attachment: fixed;
-    padding: 150px 0;
+    padding: 190px 0;
     color: white;
     min-height: 680px;
     display: flex;
