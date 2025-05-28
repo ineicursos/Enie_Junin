@@ -90,6 +90,7 @@ ul {
 }
 
 /* Loader Animation with 3D Flip Effect */
+/* Loader Animation with Enhanced 3D and Glow Effects */
 .loader {
     position: fixed;
     top: 0;
@@ -103,7 +104,8 @@ ul {
     align-items: center;
     z-index: 2000;
     opacity: 1;
-    transition: opacity 0.7s ease-out;
+    transition: opacity 0.8s ease-out;
+    overflow: hidden;
 }
 
 .loader.hidden {
@@ -112,30 +114,100 @@ ul {
 }
 
 .loader-logo {
-    width: 160px;
+    width: 200px;
     height: auto;
-    animation: flip3D 2s infinite ease-in-out;
-    margin-bottom: 28px;
-    will-change: transform;
+    animation: logoSpinGlow 3s infinite ease-in-out;
+    margin-bottom: 32px;
+    will-change: transform, filter;
     filter: drop-shadow(var(--glow));
+    transform: perspective(1000px) translateZ(0);
 }
 
 .loader-progress {
-    width: 260px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    width: 300px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
     overflow: hidden;
     position: relative;
+    box-shadow: var(--shadow-sm);
 }
 
 .loader-progress-bar {
     width: 0;
     height: 100%;
-    background: white;
-    animation: load 2.2s ease-in-out forwards, glowPulse 1.5s infinite ease-in-out;
+    background: var(--gradient);
+    animation: loadProgress 2.5s ease-in-out forwards, glowPulse 1.8s infinite ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
+.loader-progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shine 2s infinite linear;
+}
+
+/* New Animations for Loader */
+@keyframes logoSpinGlow {
+    0% {
+        transform: perspective(1000px) rotateY(0deg) scale(1);
+        filter: drop-shadow(var(--glow));
+    }
+    50% {
+        transform: perspective(1000px) rotateY(180deg) scale(1.1);
+        filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.8));
+    }
+    100% {
+        transform: perspective(1000px) rotateY(360deg) scale(1);
+        filter: drop-shadow(var(--glow));
+    }
+}
+
+@keyframes loadProgress {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: var(--glow); }
+    50% { box-shadow: 0 0 35px rgba(139, 92, 246, 0.9); }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Optional Particle Background for Loader */
+.loader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Cfilter id="bb"%3E%3CfeGaussianBlur in="SourceGraphic" stdDeviation="10" /%3E%3C/filter%3E%3Ccircle cx="100" cy="100" r="20" fill="%23F59E0B" filter="url(%23bb)"/%3E%3Ccircle cx="700" cy="700" r="15" fill="%2306B6D4" filter="url(%23bb)"/%3E%3Ccircle cx="400" cy="400" r="25" fill="%231E3A8A" filter="url(%23bb)"/%3E%3Ccircle cx="200" cy="600" r="18" fill="%23F59E0B" filter="url(%23bb)"/%3E%3Ccircle cx="600" cy="200" r="22" fill="%2306B6D4" filter="url(%23bb)"/%3E%3C/svg%3E') no-repeat center center;
+    opacity: 0.3;
+    animation: particleFloat 12s infinite ease-in-out;
+    will-change: transform;
+}
+
+@keyframes particleFloat {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+    100% { transform: translateY(0) scale(1); }
+}
 /* New 3D Flip and Glow Animations */
 @keyframes flip3D {
     0% { transform: perspective(1000px) rotateX(0deg); }
