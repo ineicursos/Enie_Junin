@@ -23,6 +23,8 @@
     --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     --font-primary: 'Inter', 'Roboto', system-ui, sans-serif;
     --font-heading: 'Poppins', 'Montserrat', sans-serif;
+    /* New variable for glow effect */
+    --glow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
 
 /* General Styles */
@@ -60,7 +62,7 @@ ul {
     list-style: none;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar with Pulse Effect */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -73,14 +75,21 @@ ul {
 ::-webkit-scrollbar-thumb {
     background: var(--gradient);
     border-radius: 10px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
+    animation: pulseScroll 2s infinite ease-in-out;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color);
+    box-shadow: var(--glow);
 }
 
-/* Loader Animation */
+/* New Pulse Animation for Scrollbar */
+@keyframes pulseScroll {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.1); }
+}
+
+/* Loader Animation with 3D Flip Effect */
 .loader {
     position: fixed;
     top: 0;
@@ -105,9 +114,10 @@ ul {
 .loader-logo {
     width: 160px;
     height: auto;
-    animation: pulse 1.6s infinite ease-in-out;
+    animation: flip3D 2s infinite ease-in-out;
     margin-bottom: 28px;
     will-change: transform;
+    filter: drop-shadow(var(--glow));
 }
 
 .loader-progress {
@@ -116,15 +126,29 @@ ul {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
 }
 
 .loader-progress-bar {
     width: 0;
     height: 100%;
     background: white;
-    animation: load 2.2s ease-in-out forwards;
+    animation: load 2.2s ease-in-out forwards, glowPulse 1.5s infinite ease-in-out;
 }
 
+/* New 3D Flip and Glow Animations */
+@keyframes flip3D {
+    0% { transform: perspective(1000px) rotateX(0deg); }
+    50% { transform: perspective(1000px) rotateX(180deg); }
+    100% { transform: perspective(1000px) rotateX(360deg); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: var(--glow); }
+    50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.8); }
+}
+
+/* Particles with Parallax Wave Effect */
 .particles {
     position: absolute;
     top: 0;
@@ -132,37 +156,28 @@ ul {
     width: 100%;
     height: 100%;
     background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Cfilter id="bb"%3E%3CfeGaussianBlur in="SourceGraphic" stdDeviation="8" /%3E%3C/filter%3E%3Ccircle cx="150" cy="150" r="16" fill="%23F59E0B" filter="url(%23bb)"/%3E%3Ccircle cx="650" cy="650" r="12" fill="%2306B6D4" filter="url(%23bb)"/%3E%3Ccircle cx="400" cy="300" r="20" fill="%231E3A8A" filter="url(%23bb)"/%3E%3Ccircle cx="200" cy="600" r="14" fill="%23F59E0B" filter="url(%23bb)"/%3E%3Ccircle cx="600" cy="200" r="18" fill="%2306B6D4" filter="url(%23bb)"/%3E%3C/svg%3E') no-repeat center center;
-    animation: float 14s infinite ease-in-out;
+    animation: waveParallax 10s infinite ease-in-out;
     opacity: 0.2;
     will-change: transform;
+    transform: perspective(1000px);
 }
 
-/* Animations */
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
+/* New Parallax Wave Animation */
+@keyframes waveParallax {
+    0% { transform: perspective(1000px) translateZ(0) translateY(0) rotate(0deg); }
+    50% { transform: perspective(1000px) translateZ(40px) translateY(-30px) rotate(5deg); }
+    100% { transform: perspective(1000px) translateZ(0) translateY(0) rotate(0deg); }
 }
 
-@keyframes load {
-    0% { width: 0; }
-    100% { width: 100%; }
+/* Enhanced Content Reveal Animation */
+@keyframes fadeInZoom {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-@keyframes float {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-60px) rotate(10deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Content Reveal Animation */
 main, header, footer {
     opacity: 0;
-    animation: fadeInUp 0.8s ease-out forwards;
+    animation: fadeInZoom 0.8s ease-out forwards;
 }
 
 header { animation-delay: 2.3s; }
@@ -174,7 +189,7 @@ header { animation-delay: 2.3s; }
 .testimonials { animation-delay: 3.5s; }
 footer { animation-delay: 3.7s; }
 
-/* Header */
+/* Header with Dynamic Hover Effects */
 header {
     background: var(--glass-bg);
     backdrop-filter: blur(18px);
@@ -196,15 +211,18 @@ header {
     display: flex;
     align-items: center;
     gap: 12px;
+    position: relative;
 }
 
 .logo img {
     height: 90px;
     transition: var(--transition);
+    filter: drop-shadow(var(--shadow-sm));
 }
 
 .logo img:hover {
-    transform: scale(1.1) rotate(5deg);
+    transform: perspective(1000px) translateZ(20px) rotate(10deg);
+    filter: drop-shadow(var(--glow));
 }
 
 .logo-text {
@@ -213,6 +231,22 @@ header {
     font-weight: 800;
     color: var(--primary-color);
     letter-spacing: -0.02em;
+    position: relative;
+}
+
+.logo-text::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gradient);
+    transition: width 0.4s ease;
+}
+
+.logo-text:hover::before {
+    width: 100%;
 }
 
 .logo-text span {
@@ -233,10 +267,12 @@ nav a {
     color: var(--text-color);
     position: relative;
     padding-bottom: 3px;
+    transition: var(--transition);
 }
 
 nav a:hover, nav a:focus {
     color: var(--accent-color);
+    transform: translateY(-2px);
 }
 
 nav a::after {
@@ -247,7 +283,7 @@ nav a::after {
     bottom: 0;
     left: 0;
     background: var(--gradient);
-    transition: var(--transition);
+    transition: width 0.4s ease;
 }
 
 nav a:hover::after, nav a:focus::after {
@@ -275,7 +311,8 @@ nav a:hover::after, nav a:focus::after {
 #search-courses:focus {
     outline: none;
     border-color: var(--accent-color-tertiary);
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+    box-shadow: var(--glow);
+    transform: scale(1.02);
 }
 
 #search-button {
@@ -288,12 +325,29 @@ nav a:hover::after, nav a:focus::after {
     font-size: 0.95em;
     font-weight: 700;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+#search-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0.5;
+    transition: left 0.4s ease;
+}
+
+#search-button:hover::before, #search-button:focus::before {
+    left: 0;
 }
 
 #search-button:hover, #search-button:focus {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    background: var(--accent-color-tertiary);
+    transform: translateY(-2px) translateZ(10px);
+    box-shadow: var(--glow);
 }
 
 .search-results {
@@ -310,6 +364,7 @@ nav a:hover::after, nav a:focus::after {
     width: 340px;
     z-index: 100;
     border: var(--glass-border);
+    transform: perspective(1000px) translateZ(0);
 }
 
 .search-results-item {
@@ -317,15 +372,13 @@ nav a:hover::after, nav a:focus::after {
     border-bottom: var(--glass-border);
     cursor: pointer;
     transition: var(--transition);
-}
-
-.search-results-item:last-child {
-    border-bottom: none;
+    transform: perspective(1000px) translateZ(0);
 }
 
 .search-results-item:hover, .search-results-item:focus {
     background: rgba(255, 255, 255, 0.12);
-    transform: scale(1.01);
+    transform: perspective(1000px) translateZ(20px);
+    box-shadow: var(--glow);
 }
 
 .search-results-item h4 {
@@ -340,7 +393,7 @@ nav a:hover::after, nav a:focus::after {
     color: #6B7280;
 }
 
-/* Hero Section */
+/* Hero Section with Subtle Background Pulse */
 .hero {
     position: relative;
     background: url('imagenes/fondo.webp') no-repeat center center/cover;
@@ -350,6 +403,7 @@ nav a:hover::after, nav a:focus::after {
     min-height: 680px;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 .hero::before {
@@ -361,6 +415,7 @@ nav a:hover::after, nav a:focus::after {
     height: 100%;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.35));
     z-index: 1;
+    animation: pulseOverlay 8s infinite ease-in-out;
 }
 
 .hero-content {
@@ -371,6 +426,7 @@ nav a:hover::after, nav a:focus::after {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transform: perspective(1000px) translateZ(0);
 }
 
 .hero-content h1 {
@@ -384,6 +440,22 @@ nav a:hover::after, nav a:focus::after {
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.hero-content h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: var(--gradient);
+    transition: width 0.5s ease;
+}
+
+.hero-content:hover h1::after {
+    width: 100%;
 }
 
 .hero-content h2 {
@@ -413,15 +485,38 @@ nav a:hover::after, nav a:focus::after {
     font-weight: 700;
     transition: var(--transition);
     width: fit-content;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0.5;
+    transition: left 0.4s ease;
+}
+
+.video-button:hover::before, .video-button:focus::before {
+    left: 0;
 }
 
 .video-button:hover, .video-button:focus {
-    background: var(--accent-color-secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 0 16px var(--accent-color-secondary);
+    transform: translateY(-3px) translateZ(20px);
+    box-shadow: var(--glow);
 }
 
-/* Modal Styles */
+/* New Pulse Overlay Animation */
+@keyframes pulseOverlay {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.4; }
+}
+
+/* Modal with Slide-In Effect */
 .modal {
     display: none;
     position: fixed;
@@ -433,6 +528,12 @@ nav a:hover::after, nav a:focus::after {
     z-index: 1000;
     justify-content: center;
     align-items: center;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .modal-content {
@@ -445,6 +546,7 @@ nav a:hover::after, nav a:focus::after {
     width: 88%;
     box-shadow: var(--shadow-md);
     border: var(--glass-border);
+    transform: perspective(1000px) translateZ(0);
 }
 
 .close-modal {
@@ -459,10 +561,10 @@ nav a:hover::after, nav a:focus::after {
 
 .close-modal:hover, .close-modal:focus {
     color: var(--accent-color-tertiary);
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1.2);
 }
 
-/* Programs Section */
+/* Programs Section with 3D Card Tilt */
 .programs {
     padding: 80px 0;
     background: linear-gradient(to bottom, var(--background-color), #E5E7EB);
@@ -479,6 +581,23 @@ nav a:hover::after, nav a:focus::after {
     font-weight: 800;
     color: var(--primary-color);
     margin-bottom: 16px;
+    position: relative;
+}
+
+.programs-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: var(--gradient);
+    transform: translateX(-50%);
+    transition: width 0.5s ease;
+}
+
+.programs-header:hover h2::after {
+    width: 20%;
 }
 
 .areas-container {
@@ -515,27 +634,34 @@ nav a:hover::after, nav a:focus::after {
     cursor: pointer;
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
+    transform: perspective(1000px) translateZ(0);
 }
 
 .area-item:hover, .area-item:focus {
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    transform: perspective(1000px) rotateX(5deg) translateZ(20px);
+    box-shadow: var(--glow);
 }
 
 .area-item.active {
     background: var(--gradient);
     color: white;
+    transform: perspective(1000px) translateZ(10px);
 }
 
 .area-icon {
     font-size: 1.6em;
     color: var(--secondary-color);
+    transition: var(--transition);
 }
 
 .area-item.active .area-icon {
     color: white;
+}
+
+.area-item:hover .area-icon {
+    transform: rotate(15deg);
 }
 
 .area-text {
@@ -566,6 +692,7 @@ nav a:hover::after, nav a:focus::after {
     font-family: var(--font-primary);
     font-weight: 600;
     transition: var(--transition);
+    position: relative;
 }
 
 .program-tab.active {
@@ -576,7 +703,8 @@ nav a:hover::after, nav a:focus::after {
 .program-tab:hover, .program-tab:focus {
     background: var(--accent-color-tertiary);
     color: white;
-    transform: translateY(-3px);
+    transform: translateY(-3px) translateZ(10px);
+    box-shadow: var(--glow);
 }
 
 .program-cards {
@@ -591,11 +719,12 @@ nav a:hover::after, nav a:focus::after {
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     transition: var(--transition);
+    transform: perspective(1000px) translateZ(0);
 }
 
 .program-card:hover, .program-card:focus {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
+    transform: perspective(1000px) rotateY(5deg) translateZ(30px);
+    box-shadow: var(--glow);
 }
 
 .program-image img {
@@ -606,7 +735,7 @@ nav a:hover::after, nav a:focus::after {
 }
 
 .program-card:hover .program-image img {
-    transform: scale(1.06);
+    transform: scale(1.1) translateZ(20px);
 }
 
 .program-badge {
@@ -619,6 +748,13 @@ nav a:hover::after, nav a:focus::after {
     border-radius: 40px;
     font-size: 0.95em;
     font-weight: 600;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+/* New Bounce Animation for Badges */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 .program-details {
@@ -656,6 +792,11 @@ nav a:hover::after, nav a:focus::after {
 .info-icon {
     font-size: 1.3em;
     color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.info-item:hover .info-icon {
+    transform: rotate(20deg);
 }
 
 .boton-ver-programa {
@@ -667,15 +808,32 @@ nav a:hover::after, nav a:focus::after {
     font-family: var(--font-primary);
     font-weight: 700;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.boton-ver-programa::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0.5;
+    transition: left 0.4s ease;
+}
+
+.boton-ver-programa:hover::before, .boton-ver-programa:focus::before {
+    left: 0;
 }
 
 .boton-ver-programa:hover, .boton-ver-programa:focus {
-    background: var(--accent-color-secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 0 16px var(--accent-color-secondary);
+    transform: translateY(-3px) translateZ(20px);
+    box-shadow: var(--glow);
 }
 
-/* Carousel Section */
+/* Carousel Section with Smooth 3D Scroll */
 .seccion-cursos {
     max-width: 1400px;
     margin: 100px auto;
@@ -696,6 +854,23 @@ nav a:hover::after, nav a:focus::after {
     margin-bottom: 56px;
     text-transform: uppercase;
     letter-spacing: -0.015em;
+    position: relative;
+}
+
+.titulo-principal::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: var(--gradient);
+    transform: translateX(-50%);
+    transition: width 0.5s ease;
+}
+
+.titulo-principal:hover::after {
+    width: 20%;
 }
 
 .carrusel {
@@ -723,11 +898,12 @@ nav a:hover::after, nav a:focus::after {
     display: flex;
     flex-direction: column;
     transition: var(--transition);
+    transform: perspective(1000px) translateZ(0);
 }
 
 .tarjeta:hover, .tarjeta:focus {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-md);
+    transform: perspective(1000px) rotateY(5deg) translateZ(30px);
+    box-shadow: var(--glow);
 }
 
 .tarjeta img {
@@ -738,7 +914,7 @@ nav a:hover::after, nav a:focus::after {
 }
 
 .tarjeta:hover img {
-    transform: scale(1.06);
+    transform: scale(1.1) translateZ(20px);
 }
 
 .etiqueta {
@@ -750,6 +926,7 @@ nav a:hover::after, nav a:focus::after {
     border-radius: 40px;
     margin: 20px;
     font-weight: 600;
+    animation: bounce 2s infinite ease-in-out;
 }
 
 .contenido {
@@ -780,6 +957,11 @@ nav a:hover::after, nav a:focus::after {
 .info i {
     font-size: 1.2em;
     color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.info:hover i {
+    transform: rotate(20deg);
 }
 
 .boton {
@@ -794,12 +976,29 @@ nav a:hover::after, nav a:focus::after {
     text-align: center;
     margin-top: auto;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.boton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0.5;
+    transition: left 0.4s ease;
+}
+
+.boton:hover::before, .boton:focus::before {
+    left: 0;
 }
 
 .boton:hover, .boton:focus {
-    background: var(--accent-color-secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 0 16px var(--accent-color-secondary);
+    transform: translateY(-3px) translateZ(20px);
+    box-shadow: var(--glow);
 }
 
 .flecha {
@@ -823,8 +1022,8 @@ nav a:hover::after, nav a:focus::after {
 }
 
 .flecha:hover, .flecha:focus {
-    background: var(--accent-color-tertiary);
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-50%) scale(1.2) translateZ(20px);
+    box-shadow: var(--glow);
 }
 
 .flecha.izquierda {
@@ -835,7 +1034,7 @@ nav a:hover::after, nav a:focus::after {
     right: 24px;
 }
 
-/* Benefits Section */
+/* Benefits Section with Hover Tilt */
 .benefits {
     padding: 80px 0;
     background: white;
@@ -852,6 +1051,23 @@ nav a:hover::after, nav a:focus::after {
     color: var(--primary-color);
     font-weight: 800;
     margin-bottom: 16px;
+    position: relative;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 4px;
+    background: var(--gradient);
+    transform: translateX(-50%);
+    transition: width 0.5s ease;
+}
+
+.section-title:hover h2::after {
+    width: 20%;
 }
 
 .section-title p {
@@ -877,11 +1093,12 @@ nav a:hover::after, nav a:focus::after {
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     border: var(--glass-border);
+    transform: perspective(1000px) translateZ(0);
 }
 
 .benefit-item:hover, .benefit-item:focus {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
+    transform: perspective(1000px) rotateX(5deg) translateZ(20px);
+    box-shadow: var(--glow);
 }
 
 .benefit-icon {
@@ -892,7 +1109,7 @@ nav a:hover::after, nav a:focus::after {
 }
 
 .benefit-item:hover .benefit-icon {
-    transform: scale(1.12);
+    transform: scale(1.2) rotate(15deg);
 }
 
 .benefit-item h3 {
@@ -909,7 +1126,7 @@ nav a:hover::after, nav a:focus::after {
     color: #4B5563;
 }
 
-/* Call to Action Section */
+/* Call to Action Section with Button Pulse */
 .cta-section {
     padding: 80px 0;
     background: var(--gradient);
@@ -944,16 +1161,32 @@ nav a:hover::after, nav a:focus::after {
     font-size: 1.2em;
     transition: var(--transition);
     box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0.5;
+    transition: left 0.4s ease;
+}
+
+.cta-button:hover::before, .cta-button:focus::before {
+    left: 0;
 }
 
 .cta-button:hover, .cta-button:focus {
-    background: var(--accent-color);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 0 16px var(--accent-color);
+    transform: translateY(-3px) translateZ(20px);
+    box-shadow: var(--glow);
 }
 
-/* Testimonials Section */
+/* Testimonials Section with Card Flip */
 .testimonials {
     padding: 80px 0;
     background: linear-gradient(to bottom, var(--background-color), #E5E7EB);
@@ -971,11 +1204,12 @@ nav a:hover::after, nav a:focus::after {
     box-shadow: var(--shadow-sm);
     padding: 28px;
     transition: var(--transition);
+    transform: perspective(1000px) translateZ(0);
 }
 
 .testimonial-card:hover, .testimonial-card:focus {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
+    transform: perspective(1000px) rotateY(10deg) translateZ(30px);
+    box-shadow: var(--glow);
 }
 
 .testimonial-text {
@@ -1003,7 +1237,7 @@ nav a:hover::after, nav a:focus::after {
 }
 
 .testimonial-card:hover .testimonial-author img {
-    transform: scale(1.12);
+    transform: scale(1.2) rotate(10deg);
 }
 
 .author-info h4 {
@@ -1019,7 +1253,7 @@ nav a:hover::after, nav a:focus::after {
     color: #6B7280;
 }
 
-/* Footer */
+/* Footer with Subtle Hover Effects */
 footer {
     background: #111827;
     color: white;
@@ -1057,7 +1291,7 @@ footer {
 
 .footer-section a:hover, .footer-section a:focus {
     color: var(--accent-color);
-    text-decoration: underline;
+    transform: translateY(-2px);
 }
 
 .social-links {
@@ -1074,7 +1308,7 @@ footer {
 
 .social-links a:hover, .social-links a:focus {
     color: var(--accent-color-tertiary);
-    transform: translateY(-3px);
+    transform: translateY(-3px) rotate(10deg);
 }
 
 .inei-logo {
@@ -1084,11 +1318,12 @@ footer {
     background: var(--glass-bg);
     padding: 10px;
     border-radius: var(--border-radius);
+    filter: drop-shadow(var(--shadow-sm));
 }
 
 .inei-logo:hover, .inei-logo:focus {
-    transform: scale(1.1);
-    box-shadow: 0 0 16px rgba(139, 92, 246, 0.4);
+    transform: perspective(1000px) translateZ(20px);
+    filter: drop-shadow(var(--glow));
 }
 
 .call-to-action {
@@ -1122,7 +1357,7 @@ footer {
     color: #9CA3AF;
 }
 
-/* Back to Top Button */
+/* Back to Top Button with Spin Effect */
 .back-to-top {
     position: fixed;
     bottom: 40px;
@@ -1149,9 +1384,8 @@ footer {
 }
 
 .back-to-top:hover, .back-to-top:focus {
-    background: var(--accent-color-tertiary);
-    transform: translateY(-5px);
-    box-shadow: 0 0 16px var(--accent-color-tertiary);
+    transform: translateY(-5px) rotate(360deg);
+    box-shadow: var(--glow);
 }
 
 /* Responsive Design */
